@@ -35,7 +35,14 @@
      when user presses the "edit" button, ng-show toggles  an input text box
      on and off which updates the todo list.
 -->
-          <span  ng-hide="editBtn[index]">{{do}}</span>
+
+          <span  ng-hide="editBtn[index]">
+<!--
+    added checkboxes to the left
+  -->
+          <input type="checkbox" class="form-check-input" style="margin-right: 10px; margin-top: 10px">
+          <label class="form-check-label">{{do}}</label></span>
+
           <span  ng-show="editBtn[index]">
             <input type="text" ng-model="newItem2"/>
             <input type="button" value="update" ng-click="update(index, newItem2)">
@@ -48,7 +55,6 @@
             <span class="glyphicon glyphicon-edit " aria-hidden="true"></span>
           </button>
             &nbsp;
-
 
         </li>
       </ul>
