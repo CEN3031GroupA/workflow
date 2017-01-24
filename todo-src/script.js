@@ -16,9 +16,11 @@ myApp.controller('MainCtrl', function ($scope){
 // edit function makes editBtn entry true
   $scope.edit = function(index){
     $scope.editBtn[index] = true;
+
   }
 // update function closes out editBtn functionality
-  $scope.update = function(index){
+  $scope.update = function(index, value){
+    $scope.todos[index] = value;
     $scope.editBtn[index] = false;
   }
 

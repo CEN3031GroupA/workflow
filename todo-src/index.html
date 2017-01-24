@@ -15,7 +15,7 @@
     <div id="todo" class="col-xs-6 col-xs-offset-3" ng-controller="MainCtrl">
 
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Item to add to todo list" ng-model="newItem">
+          <input type="text" class="form-control" placeholder="Item to add to todo list" ng-model="newItem" ng-required>
           <span class="input-group-btn">
             <button class="btn btn-default" type="button" ng-click="addItem()">
               Add
@@ -34,26 +34,21 @@
      editBtn is an array of true/false values that mirror the todo list
      when user presses the "edit" button, ng-show toggles  an input text box
      on and off which updates the todo list.
-
-     I separated the buttons into different groups to style them, the spacing
-     was irritating me xD
 -->
           <span  ng-hide="editBtn[index]">{{do}}</span>
-          <span  ng-show="editBtn[index]"><input type="text" ng-model="do" /></span>
+          <span  ng-show="editBtn[index]">
+            <input type="text" ng-model="newItem2"/>
+            <input type="button" value="update" ng-click="update(index, newItem2)">
+          </span>
 
           <button class="btn btn-danger pull-right" type="button" ng-click="deleteItem(do)">
             <span class="glyphicon glyphicon-trash " aria-hidden="true"></span>
           </button>
-
-          <div class = "btn-group pull-right" role="group">
-            <button class="btn btn-link" type="button" ng-click="edit(index)">
-              <span class="glyphicon glyphicon-edit " aria-hidden="true"></span>
-            </button>
-            <button class="btn btn-link" type="button" ng-click="update(index)">
-              <span class="glyphicon glyphicon-ok " aria-hidden="true"></span>
-            </button>
+          <button class="btn btn-link pull-right" type="button" ng-click="edit(index)">
+            <span class="glyphicon glyphicon-edit " aria-hidden="true"></span>
+          </button>
             &nbsp;
-          </div>
+
 
         </li>
       </ul>
