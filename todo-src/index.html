@@ -28,35 +28,38 @@
 
       <ul class="list-group">
         <!-- http://www.w3schools.com/css/css_float.asp -->
-        <li class="list-group-item clearfix" ng-init = "index = $index" ng-repeat="do in todos">
-<!--
-    I added the editBtn function into the main loop:
-     editBtn is an array of true/false values that mirror the todo list
-     when user presses the "edit" button, ng-show toggles  an input text box
-     on and off which updates the todo list.
--->
+        <li class="list-group-item clearfix"  ng-repeat="do in todos track by $index">
+          <!--
+            I added the fields edit and done to the main array
+          -->
+          <span  ng-hide="do.edit">
+          <input type="checkbox"
+          class="form-check-input"
+          style="margin-right: 10px; margin-top: 10px"
+          ng-model="do.done">
+          <label class="form-check-label">{{do.text}}</label></span>
 
-          <span  ng-hide="editBtn[index]">
-<!--
-    added checkboxes to the left
-  -->
-          <input type="checkbox" class="form-check-input" style="margin-right: 10px; margin-top: 10px">
-          <label class="form-check-label">{{do}}</label></span>
-
-          <span  ng-show="editBtn[index]">
+          <span  ng-show="do.edit">
             <input type="text" ng-model="newItem2"/>
-            <input type="button" value="update" ng-click="update(index, newItem2)">
+            <input type="submit" value="update" ng-click="update($index, newItem2)">
           </span>
 
-          <button class="btn btn-danger pull-right" type="button" ng-click="deleteItem(do)">
+          <button class="btn btn-danger pull-right" type="button" ng-click="deleteItem($index)">
             <span class="glyphicon glyphicon-trash " aria-hidden="true"></span>
           </button>
-          <button class="btn btn-link pull-right" type="button" ng-click="edit(index)">
+          <button class="btn btn-link pull-right" type="button" ng-click="do.edit = !do.edit">
             <span class="glyphicon glyphicon-edit " aria-hidden="true"></span>
           </button>
             &nbsp;
 
         </li>
+        <button style:"margin:50px" class="btn btn-default"  type="button" ng-click="remove()">
+
+          <span  class="glyphicon glyphicon-thumbs-up " aria-hidden="true">
+            Clear all completed tasks
+          </span>
+        </button>
+
       </ul>
     </div>
 

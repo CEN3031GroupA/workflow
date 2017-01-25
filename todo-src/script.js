@@ -3,39 +3,41 @@
 var myApp = angular.module('app', []);
 
 myApp.controller('MainCtrl', function ($scope){
-  $scope.todos = ["Learn Angular", "Learn node"];
+
+//    I modified the array to contain
+//    flags for editing and checking off
+//    this made implementing add/remove and
+//    clearList much easier
+
+  $scope.todos = [
+    {text:"Learn Angular", done:false, edit:false},
+    {text: "Learn node", done:false, edit:false}]
   $scope.newItem = "";
 
-// create editBtn array to mirror toDo list,
-// holds boolean values depending on whether item has been clicked on
-  $scope.editBtn = {};
-// for loop initializes each item in editBtn to false
-  for (var i=0, length = $scope.todos.length; i < length; i++) {
-    $scope.editBtn[i] = false;
-  }
-// edit function makes editBtn entry true
-  $scope.edit = function(index){
-    $scope.editBtn[index] = true;
-
-  }
-// update function closes out editBtn functionality
   $scope.update = function(index, value){
-    $scope.todos[index] = value;
-    $scope.editBtn[index] = false;
+    $scope.todos[index].text = value;
+    $scope.todos[index].edit = false;
   }
 
   $scope.addItem = function(){
     console.log("in add");
     if ($scope.newItem !== ""){
-      $scope.todos.push($scope.newItem);
+      $scope.todos.push({text:$scope.newItem, done:false, edit:false});
       $scope.newItem = "";
     }
   }
 
-  $scope.deleteItem = function(item){
+  $scope.deleteItem = function(index){
     console.log("in delete");
-    var index = $scope.todos.indexOf(item);
     $scope.todos.splice(index, 1);
+  }
+
+  $scope.remove = function() {
+    var oldList = $scope.todos;
+    $scope.todos = [];
+    angular.forEach(oldList, function(x) {
+      if (!x.done) $scope.todos.push(x);
+    });
   }
 
 
