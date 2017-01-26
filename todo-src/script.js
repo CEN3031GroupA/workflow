@@ -32,6 +32,14 @@ myApp.controller('MainCtrl', function ($scope){
     $scope.todos.splice(index, 1);
   }
 
+  $scope.remaining = function() {
+    var count = 0;
+    angular.forEach($scope.todos, function(todo) {
+      count += todo.done ? true : false;
+    });
+    return count;
+  }
+
   $scope.remove = function() {
     var oldList = $scope.todos;
     $scope.todos = [];
