@@ -48,8 +48,15 @@ myApp.controller('MainCtrl', function ($scope){
     });
   }
 
-
 });
+
+myApp.controller('switchExample', ['ngAnimate'])
+.controller('ExampleController', ['$scope', function ($scope) {
+  $scope.items = ['now', 'tomorrow', 'someday'];
+  $scope.selection = $scope.items[0];
+}]);
+
+
 
 /*************************
  * Homework (not rly):
