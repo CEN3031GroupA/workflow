@@ -15,16 +15,23 @@
     <div id="todo" class="col-xs-6 col-xs-offset-3" ng-controller="MainCtrl">
 
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Item to add to todo list" ng-model="newItem" ng-required>
+
+          <input type="text"
+          class="form-control"
+          placeholder="Item to add to todo list"
+          ng-model="newItem"
+          ui-keypress="{enter: 'addItem()'}"
+          ng-required >
           <span class="input-group-btn">
             <button class="btn btn-default" type="button" ng-click="addItem()">
               Add
               <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
             </button>
           </span>
+
         </div><!-- /input-group -->
 
-      <h2>stuff i gotta do asap</h2>
+      <h2>{{todos.length}} stuff(s) i gotta do asap</h2>
 
       <ul class="list-group">
         <!-- http://www.w3schools.com/css/css_float.asp -->
