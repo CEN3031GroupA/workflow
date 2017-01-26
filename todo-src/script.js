@@ -24,13 +24,17 @@ myApp.controller('MainCtrl', function ($scope){
     if ($scope.newItem !== ""){
       $scope.todos.push({text:$scope.newItem, done:false, edit:false});
       $scope.newItem = "";
+      $scope.totalItems = $scope.totalItems + 1;
     }
   }
+
 
   $scope.deleteItem = function(index){
     console.log("in delete");
     $scope.todos.splice(index, 1);
+    $scope.totalItems -= 1;
   }
+
 
   $scope.remaining = function() {
     var count = 0;
